@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import './Stats.css';
 
 const Stats = ({ characters }) => {
     const [totalEpisodes, setTotalEpisodes] = useState(null)
