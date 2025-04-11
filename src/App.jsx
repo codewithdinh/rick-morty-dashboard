@@ -66,7 +66,7 @@ function App() {
       />
 
       {loading ? (
-        <div>
+        <div className="loading-container">
           <div className="loading"></div>
           <p>Loading</p>
         </div>
