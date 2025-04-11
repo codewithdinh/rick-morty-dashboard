@@ -246,22 +246,32 @@ select:focus {
 
 @media (max-width: 768px) {
   .character-row {
-    grid-template-columns: 80px 1fr;
-    grid-template-rows: repeat(3, auto);
-    gap: 0.5rem;
+    grid-template-columns: 1fr; /* Stack all items into one column */
+    text-align: left; /* Align text to the left */
+    padding: 1rem;
+  }
+
+  .character-row div {
+    margin-bottom: 0.5rem; /* Add spacing between items */
+  }
+
+  .character-image {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto; /* Center the image horizontally */
+    display: block; /* Ensure it respects margin settings */
   }
 
   .character-row div:nth-child(1) {
-    grid-row: 1 / 4;
+    order: 1; /* Image first */
   }
 
   .character-row div:nth-child(2) {
-    grid-column: 2 / 3;
-    grid-row: 1;
+    order: 2; /* Name second */
   }
 
   .character-row div:nth-child(n+3) {
-    grid-column: 2 / 3;
+    order: 3; /* Other details after */
   }
 
   .filter-bar {
