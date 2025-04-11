@@ -48,7 +48,7 @@ function App() {
 
   return (
     <>
-      <Header></Header>
+      {/* <Header></Header> */}
       <Stats characters={characters}></Stats>
       <Filters
         search={search}
