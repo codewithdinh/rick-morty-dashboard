@@ -4,15 +4,23 @@ import Stats from "./components/Stats.jsx";
 import Filters from "./components/Filters.jsx";
 import CharacterList from "./components/CharacterList.jsx";
 import "./App.css";
+import SpeciesChart from "./components/SpeciesChart.jsx";
+import StatusChart from "./components/StatusChart.jsx";
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+
+  // State variables for filters
   const [statusFilter, setStatusFilter] = useState("All");
   const [speciesFilter, setSpeciesFilter] = useState("All");
   const [genderFilter, setGenderFilter] = useState("All");
   const [originFilter, setOriginFilter] = useState("All");
+
+    // State variables to control chart visibility
+    const [showSpeciesChart, setShowSpeciesChart] = useState(true);
+    const [showStatusChart, setShowStatusChart] = useState(true);
 
   useEffect(() => {
     async function fetchAllCharacters() {
@@ -46,10 +54,43 @@ function App() {
     .filter((c) => genderFilter === "All" || c.gender === genderFilter)
     .filter((c) => originFilter === "All" || c.origin.name === originFilter);
 
+  // Prepare data for species distribution chart
+  const speciesData = characters.reduce((acc, character) => {
+    acc[character.species] = (acc[character.species] || 0) + 1;
+    return acc;
+  }, {});
+
+  const speciesChartData = Object.entries(speciesData).map(([name, value]) => ({
+    name,
+    value,
+  }));
+
+  // Prepare data for status distribution chart
+  const statusData = characters.reduce((acc, character) => {
+    acc[character.status] = (acc[character.status] || 0) + 1;
+    return acc;
+  }, {});
+
+  const statusChartData = Object.entries(statusData).map(([name, value]) => ({
+    name,
+    value,
+  }));
+
   return (
     <>
-      {/* <Header></Header> */}
       <Stats characters={characters}></Stats>
+      {/* Toggle buttons for chart visibility */}
+      <div>
+        <button onClick={() => setShowSpeciesChart(!showSpeciesChart)}>
+          {showSpeciesChart ? "Hide Species Chart" : "Show Species Chart"}
+        </button>
+        <button onClick={() => setShowStatusChart(!showStatusChart)}>
+          {showStatusChart ? "Hide Status Chart" : "Show Status Chart"}
+        </button>
+      </div>
+      {/* Conditionally render the charts based on the state */}
+      {showSpeciesChart && <SpeciesChart data={speciesChartData} />}
+      {showStatusChart && <StatusChart data={statusChartData} />}
       <Filters
         search={search}
         setSearch={setSearch}

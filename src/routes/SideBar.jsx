@@ -1,16 +1,10 @@
 import { Outlet, Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 const SideBar = () => {
     return (
         <div>
-            <header className="title">
-                Ricky and Morty Universe Dashboard
-                <nav className="sidebar">
-                    <Link to="/">Home</Link>
-                    <Link to="/about">About</Link>
-                </nav>
-            </header>
-
+            <Header />
             <div className="content">
                 <Outlet />
             </div>

@@ -9,7 +9,7 @@ const CharacterList = ({ characters }) => {
                 <div>Species</div>
                 <div>Status</div>
                 <div>Origin</div>
-                <div>Last Seen</div>
+                {/* <div>Last Seen</div> */}
                 {/* <div>Episodes</div> */}
             </div>
             {characters.map((c) => (
@@ -19,7 +19,7 @@ const CharacterList = ({ characters }) => {
                     <div>{c.species}</div>
                     <div>{c.status}</div>
                     <div>{c.origin.name}</div>
-                    <div>{c.location.name}</div>
+                    {/* <div>{c.location.name}</div> */}
                     {/* <div>{c.episode.length}</div> */}
                 </div>
             ))}
