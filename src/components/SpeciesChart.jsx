@@ -29,7 +29,8 @@ const SpeciesChart = ({ data }) => {
         <div>
             <h3>Species Distribution</h3>
             <p>This chart shows the distribution of different species among all characters.</p>
-            <PieChart width={800} height={500}>
+            <p className="highlight-text">Humans represent the largest species group, with Aliens being the second most common species in the Rick and Morty universe.</p>
+            <PieChart width={600} height={300}>
                 <Pie
                     data={finalData}
                     cx="50%"
@@ -47,7 +48,7 @@ const SpeciesChart = ({ data }) => {
                     }
                 </Pie>
                 <Tooltip formatter={(value, name) => [`${value}`, name]} />
-                <Legend layout="vertical" align="right" verticalAlign="middle" />
+                <Legend layout="vertical" align="left" verticalAlign="middle" />
             </PieChart>
         </div>
     );

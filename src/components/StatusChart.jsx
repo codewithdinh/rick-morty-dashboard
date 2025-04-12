@@ -6,6 +6,7 @@ const StatusChart = ({ data }) => {
         <div>
             <h3>Status Distribution</h3>
             <p>This chart shows the distribution of character statuses (Alive, Dead, Unknown).</p>
+            <p className="highlight-text">Most characters are still alive, with some having met an unfortunate demise. A significant number have unknown status.</p>
             <BarChart width={500} height={300} data={data}
                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />

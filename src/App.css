@@ -12,6 +12,60 @@ header {
   text-align: center;
 }
 
+/* Enhanced Header and Navigation */
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+
+}
+
+/* Dashboard title styling */
+.title::before {
+  content: "🛸";
+  margin-right: 15px;
+  font-size: 2.8rem;
+}
+
+/* Navigation sidebar styling */
+.sidebar {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  background-color: rgba(45, 138, 52, 0.726);
+  transition: all 0.3s ease;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+/* Add icons to navigation links */
+.sidebar a[href="/"]::before {
+  content: "🏠 ";
+  margin-right: 6px;
+}
+
+.sidebar a[href="/about"]::before {
+  content: "ℹ️ ";
+  margin-right: 6px;
+}
+
+.sidebar a:hover {
+  background-color: rgba(149, 241, 19, 0.644);
+  /* transform: translateY(-2px); */
+}
+
 .character-table {
   max-width: 1200px;
   margin: 0 auto;
@@ -218,11 +272,7 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(151, 206, 76, 0.2);
 }
 
-/* button.active {
-  background-color: #97ce4c;
-  color: #1a1a1a;
-  border: 1px solid #97ce4c;
-} */
+
 
 /* Button styling */
 .filter-group button {
@@ -242,6 +292,134 @@ select:focus {
   border: 1px solid #97ce4c;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard layout container */
+.dashboard-container {
+  display: flex;
+  max-width: 1600px;
+  margin: 2rem auto;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 0 1.5rem;
+}
+
+/* Character list container */
+.character-list-container {
+  flex: 2;
+  min-width: 600px;
+}
+
+/* Enhanced charts container */
+.charts-container {
+  flex: 1;
+  min-width: 300px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-top: 5px solid #97ce4c;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  position: sticky;
+  top: 100px;
+}
+
+/* Chart toggle buttons container */
+.chart-toggle-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #eaeaea;
+}
+
+.chart-toggle-buttons button {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  border: 1px solid #e9ecef;
+  border-radius: 30px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Species Chart button */
+.chart-toggle-buttons button:first-child::before {
+  content: "📊 ";
+  margin-right: 5px;
+}
+
+/* Status Chart button */
+.chart-toggle-buttons button:last-child::before {
+  content: "📈 ";
+  margin-right: 5px;
+}
+
+.chart-toggle-buttons button:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+}
+
+/* Individual chart containers */
+.charts-container > div {
+  margin-bottom: 2.5rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.charts-container h3 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid #f0f2f5;
+  padding-bottom: 0.5rem;
+}
+
+.charts-container p {
+  color: #7f8c8d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Animation for charts */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Chart container styling */
+.chart-container {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 2rem;
+  border-left: 3px solid #97ce4c;
+}
+
+.chart-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-text {
+  background-color: #f8f9fa;
+  padding: 0.75rem;
+  border-left: 3px solid #97ce4c;
+  border-radius: 0 4px 4px 0;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* Ensure charts are properly centered and responsive */
+.recharts-wrapper {
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -292,4 +470,106 @@ select:focus {
   .stat-card {
     padding: 1rem;
   }
+
+  .title {
+    font-size: 1.5rem;
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .title::before {
+    font-size: 1.8rem;
+  }
+  
+  .sidebar {
+    margin: 0 auto;
+  }
+
+  /* New styles for collapsible charts */
+  .charts-container {
+    position: static; /* Remove sticky positioning on mobile */
+    max-height: none;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .chart-container {
+    display: none; 
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+  
+  .chart-container.expanded {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  /* Style the toggle buttons as full width on mobile */
+  .chart-toggle-buttons {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .chart-toggle-buttons button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .chart-toggle-buttons button::after {
+    content: "▼";
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .chart-toggle-buttons button.expanded::after {
+    transform: rotate(180deg);
+  }
 }
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 992px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  
+  .character-list-container,
+  .charts-container {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  /* Reorder flex items for mobile view */
+  .charts-container {
+    order: 1; /* Lower number comes first */
+    margin-bottom: 1.5rem;
+    max-height: none;
+    position: static;
+  }
+  
+  .character-list-container {
+    order: 2; /* Higher number comes second */
+  }
+}
+
+

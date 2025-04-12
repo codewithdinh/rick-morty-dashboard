@@ -79,41 +79,46 @@ function App() {
   return (
     <>
       <Stats characters={characters}></Stats>
-      {/* Toggle buttons for chart visibility */}
-      <div>
-        <button onClick={() => setShowSpeciesChart(!showSpeciesChart)}>
-          {showSpeciesChart ? "Hide Species Chart" : "Show Species Chart"}
-        </button>
-        <button onClick={() => setShowStatusChart(!showStatusChart)}>
-          {showStatusChart ? "Hide Status Chart" : "Show Status Chart"}
-        </button>
-      </div>
-      {/* Conditionally render the charts based on the state */}
-      {showSpeciesChart && <SpeciesChart data={speciesChartData} />}
-      {showStatusChart && <StatusChart data={statusChartData} />}
-      <Filters
-        search={search}
-        setSearch={setSearch}
-        statusFilter={statusFilter}
-        setStatusFilter={setStatusFilter}
-        speciesFilter={speciesFilter}
-        setSpeciesFilter={setSpeciesFilter}
-        genderFilter={genderFilter}
-        setGenderFilter={setGenderFilter}
-        originFilter={originFilter}
-        setOriginFilter={setOriginFilter}
-        speciesOptions={speciesOptions}
-        originOptions={originOptions}
-      />
-
-      {loading ? (
-        <div className="loading-container">
-          <div className="loading"></div>
-          <p>Loading</p>
+      <div className="dashboard-container">
+        <div className="character-list-container">
+          <Filters
+            search={search}
+            setSearch={setSearch}
+            statusFilter={statusFilter}
+            setStatusFilter={setStatusFilter}
+            speciesFilter={speciesFilter}
+            setSpeciesFilter={setSpeciesFilter}
+            genderFilter={genderFilter}
+            setGenderFilter={setGenderFilter}
+            originFilter={originFilter}
+            setOriginFilter={setOriginFilter}
+            speciesOptions={speciesOptions}
+            originOptions={originOptions}
+          />
+          
+          {loading ? (
+            <div className="loading-container">
+              <div className="loading"></div>
+              <p>Loading</p>
+            </div>
+          ) : (
+            <CharacterList characters={filtered}></CharacterList>
+          )}
         </div>
-      ) : (
-        <CharacterList characters={filtered}></CharacterList>
-      )}
+        
+        <div className="charts-container">
+          <div className="chart-toggle-buttons">
+            <button onClick={() => setShowSpeciesChart(!showSpeciesChart)}>
+              {showSpeciesChart ? "Hide Species Chart" : "Show Species Chart"}
+            </button>
+            <button onClick={() => setShowStatusChart(!showStatusChart)}>
+              {showStatusChart ? "Hide Status Chart" : "Show Status Chart"}
+            </button>
+          </div>
+          {showSpeciesChart && <SpeciesChart data={speciesChartData} />}
+          {showStatusChart && <StatusChart data={statusChartData} />}
+        </div>
+      </div>
     </>
   );
 }
